@@ -5,7 +5,11 @@ video_capture = cv2.VideoCapture(0)
 
 while True:
     ret, frame = video_capture.read()
-    face_locations = face_recognition.face_locations(frame)
+
+    # Compresses frame for faster processing
+    compressed_frame = cv2.resize(frame, (0,0), fx=0.25, fy=0.25)
+
+    face_locations = face_recognition.face_locations(compressed_frame)
 
     for (top, right, bottom, left) in face_locations:
         print(top, right, bottom, left)
