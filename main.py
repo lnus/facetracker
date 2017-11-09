@@ -10,6 +10,9 @@ optimized_mode = False
 while True:
     ret, frame = video_capture.read()
 
+    # Mirrors the camera for a more natural, mirror-like, feel
+    frame = cv2.flip(frame, 1)
+
     if render_faces:
         # Compresses frame for faster processing (better framerate)
         # Downscale by 4
@@ -29,6 +32,6 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-# Drops cam
+# Drops cam when finished
 video_capture.release()
 cv2.destroyAllWindows()
