@@ -18,5 +18,3 @@ while True:
 # Drops cam
 video_capture.release()
 cv2.destroyAllWindows()
-
-#atom git test
