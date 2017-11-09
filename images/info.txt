@@ -1,0 +1,3 @@
+In here you can put any image file you want to use.
+
+Label one "me.jpg", and it will be compared to the face and labeled "Me" when the software is ran.
