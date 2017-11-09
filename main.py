@@ -11,8 +11,8 @@ while True:
 
     if render_faces:
         # Compresses frame for faster processing
-        compressed_frame = cv2.resize(frame, (0,0), fx=0.25, fy=0.25)
-        face_locations = face_recognition.face_locations(compressed_frame)
+        # compressed_frame = cv2.resize(frame, (0,0), fx=0.25, fy=0.25)
+        face_locations = face_recognition.face_locations(frame)
 
     for (top, right, bottom, left) in face_locations:
         print(top, right, bottom, left)
