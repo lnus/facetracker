@@ -11,9 +11,8 @@ while True:
     ret, frame = video_capture.read()
     frame = cv2.flip(frame, 1)
 
-    #TODO: Add some compression for faster processing
-
-    face_landmarks_list = face_recognition.face_landmarks(frame)
+    compressed_frame = cv2.resize(frame, (0,0), fx=0.25, fy=0.25)
+    face_landmarks_list = face_recognition.face_landmarks(compressed_frame)
 
     for face_landmarks in face_landmarks_list:
         facial_features = [
@@ -30,13 +29,13 @@ while True:
 
         # Draw the chin
         for facial_feature in facial_features:
+            # Scales up the points with 4, since the image was scaled down by 4
             points = []
             for point in face_landmarks[facial_feature]:
-                points.append(point)
+                new_point = (point[0]*4, point[1]*4)
+                points.append(new_point)
             for i in range(len(points)-1):
-                cv2.line(frame, points[i], points[i+1], (random.randint(0,255),
-                random.randint(0,255),
-                random.randint(0,255)), 5)
+                cv2.line(frame, points[i], points[i+1], (random.randint(0,255),random.randint(0,255),random.randint(0,255)), 5)
 
 
     cv2.imshow('Video', frame)
